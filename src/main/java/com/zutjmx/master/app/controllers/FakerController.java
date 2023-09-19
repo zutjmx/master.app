@@ -32,4 +32,10 @@ public class FakerController {
         RespuestaDto respuestaDto = fakerService.login(loginForm.getUsuario(), loginForm.getPassword());
         return new ResponseEntity<>(respuestaDto, respuestaDto.getCodigo()==1? HttpStatus.OK : HttpStatus.FORBIDDEN);
     }
+
+    @PostMapping("/login-arreglo")
+    public ResponseEntity<RespuestaDto> loginArreglo(@RequestBody LoginForm loginForm) {
+        RespuestaDto respuestaDto = fakerService.loginArreglo(loginForm);
+        return new ResponseEntity<>(respuestaDto, respuestaDto.getCodigo()==1? HttpStatus.OK : HttpStatus.FORBIDDEN);
+    }
 }

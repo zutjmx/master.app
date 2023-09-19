@@ -1,6 +1,7 @@
 package com.zutjmx.master.app.services;
 
 import com.github.javafaker.Faker;
+import com.zutjmx.master.app.dtos.LoginForm;
 import com.zutjmx.master.app.dtos.RespuestaDto;
 import com.zutjmx.master.app.dtos.Usuario;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,28 @@ public class FakerService {
         }
         respuestaDto.setCodigo(autenticado?1:0);
         respuestaDto.setMensaje(autenticado?"Bienvenido usuario ".concat(usuario):"Usuario o contraseña incorrectos");
+        return respuestaDto;
+    }
+
+    public RespuestaDto loginArreglo(LoginForm loginForm) {
+        RespuestaDto respuestaDto = new RespuestaDto();
+        LoginForm usuarioAutenticado = new LoginForm();
+        boolean autenticado = false;
+        List<LoginForm> loginForms = new ArrayList<>();
+        loginForms.add(new LoginForm("zutjmx","sistemas"));
+        loginForms.add(new LoginForm("sysadmin","linux"));
+        loginForms.add(new LoginForm("dba","mariadb"));
+        loginForms.add(new LoginForm("devops","devopsagile"));
+        for (LoginForm login: loginForms) {
+            if (login.getUsuario().equals(loginForm.getUsuario()) && login.getPassword().equals(loginForm.getPassword())) {
+                autenticado = true;
+                usuarioAutenticado.setUsuario(login.getUsuario());
+                usuarioAutenticado.setPassword(login.getPassword());
+                break;
+            }
+        }
+        respuestaDto.setCodigo(autenticado?1:0);
+        respuestaDto.setMensaje(autenticado?"Bienvenido usuario ".concat(usuarioAutenticado.getUsuario()):"Usuario o contraseña incorrectos");
         return respuestaDto;
     }
 }
