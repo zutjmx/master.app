@@ -35,4 +35,15 @@ public class FakerService {
         }
         return usuarioList;
     }
+
+    public RespuestaDto login(String usuario, String password) {
+        RespuestaDto respuestaDto = new RespuestaDto();
+        boolean autenticado = false;
+        if (usuario.equals("zutjmx") && password.equals("sistemas")) {
+            autenticado = true;
+        }
+        respuestaDto.setCodigo(autenticado?1:0);
+        respuestaDto.setMensaje(autenticado?"Login exitoso":"Login fallido");
+        return respuestaDto;
+    }
 }
