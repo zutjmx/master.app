@@ -38,4 +38,10 @@ public class FakerController {
         RespuestaDto respuestaDto = fakerService.loginArreglo(loginForm);
         return new ResponseEntity<>(respuestaDto, respuestaDto.getCodigo()==1? HttpStatus.OK : HttpStatus.FORBIDDEN);
     }
+
+    @PostMapping("/login-operador-ternario")
+    public ResponseEntity<RespuestaDto> loginOperadorTernario(@RequestBody LoginForm loginForm) {
+        RespuestaDto respuestaDto = fakerService.loginOperadorTernario(loginForm);
+        return new ResponseEntity<>(respuestaDto, respuestaDto.getCodigo()==1? HttpStatus.OK : HttpStatus.FORBIDDEN);
+    }
 }

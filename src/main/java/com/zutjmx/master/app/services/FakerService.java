@@ -70,4 +70,12 @@ public class FakerService {
         respuestaDto.setMensaje(autenticado?"Bienvenido usuario ".concat(usuarioAutenticado.getUsuario()):"Usuario o contraseña incorrectos");
         return respuestaDto;
     }
+
+    public RespuestaDto loginOperadorTernario(LoginForm loginForm) {
+        RespuestaDto respuestaDto = new RespuestaDto();
+        boolean autenticado = (loginForm.getUsuario().equals("zutjmx") && loginForm.getPassword().equals("sistemas"))? true:false;
+        respuestaDto.setCodigo(autenticado?1:0);
+        respuestaDto.setMensaje(autenticado?"Bienvenido usuario ".concat(loginForm.getUsuario()):"Usuario o contraseña incorrectos");
+        return respuestaDto;
+    }
 }
